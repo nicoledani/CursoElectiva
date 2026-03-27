@@ -40,3 +40,15 @@ Este taller tiene como objetivo desarrollar una aplicación móvil básica en Fl
     ```Bash
     flutter run
     ```
+### Capturas
+### Estado inicial
+![Estado inicial](assets/readme/inicio.jpeg)
+
+### Cambio de título
+![Cambio](assets/readme/titulo.jpeg)
+
+### SnackBar
+![SnackBar](assets/readme/snackbar.jpeg)
+
+## Widgets adicionales
+![Widgets](assets/readme/widgets.jpeg)
