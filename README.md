@@ -42,13 +42,13 @@ Este taller tiene como objetivo desarrollar una aplicación móvil básica en Fl
     ```
 ### Capturas
 ### Estado inicial
-![Estado inicial](assets/readme/inicio.jpeg)
+![Estado inicial](curso_electiva/assets/readme/inicio.jpeg)
 
 ### Cambio de título
-![Cambio](assets/readme/titulo.jpeg)
+![Cambio](curso_electiva/assets/readme/titulo.jpeg)
 
 ### SnackBar
-![SnackBar](assets/readme/snackbar.jpeg)
+![SnackBar](curso_electiva/assets/readme/snackbar.jpeg)
 
 ## Widgets adicionales
-![Widgets](assets/readme/widgets.jpeg)
+![Widgets](curso_electiva/assets/readme/widgets.jpeg)
