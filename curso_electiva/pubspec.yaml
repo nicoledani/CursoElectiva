@@ -54,9 +54,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/perro.jpg
-    - assets/readme/titulo.jpeg
-    - assets/readme/widgets.jpeg
-    - assets/readme/snackbar.jpeg
-    - assets/readme/inicio.jpeg
+
     
     
