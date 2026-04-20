@@ -5,6 +5,8 @@ import 'package:taller_1/views/home/home_screen.dart';
 import 'package:taller_1/views/isolate/isolate_view.dart';
 import 'package:taller_1/views/paso_parametros/detalle_screen.dart';
 import 'package:taller_1/views/paso_parametros/paso_parametros_screen.dart';
+import 'package:taller_1/views/time/time_view.dart';
+
 
 
 final GoRouter appRouter = GoRouter(
@@ -48,6 +50,11 @@ final GoRouter appRouter = GoRouter(
       path: '/isolate',
       name: 'isolate',
       builder: (context, state) => const IsolateView(), 
+    ),
+    GoRoute(
+      path: '/time',
+      name: 'time',
+      builder: (context, state) => const TimeView(),
     ),
   ],
 );
