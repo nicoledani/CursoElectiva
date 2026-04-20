@@ -53,16 +53,14 @@ class _FutureViewState extends State<FutureView> {
   // !Funcion que obtiene los datos
   // *carga los datos y los asigna a la lista _nombres
   Future<void> obtenerDatos() async {
-    final datos =
-        await cargarNombres(); // await porque cargarNombres es una funcion asincrona
+    print("Iniciar Peticiones Asincronas");
 
-    //!mounted es una propiedad de State que indica si el widget está montado en el árbol de widgets
-    //mounted es true si el widget está montado en el árbol de widgets
-    //mounted es false si el widget no está montado en el árbol de widgets
+    final datos = await cargarNombres();
 
-    if (!mounted) return; //funciones de flecha
+    if (!mounted) return;
+
+    print("Mostrar Datos UI");
     setState(() {
-      // se encarga de redibujar la pantalla
       _nombres = datos;
     });
   }
