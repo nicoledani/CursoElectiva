@@ -1,17 +1,8 @@
-# taller_1
+# Taller 3 - Segundo plano, asincronía y servicios en Flutter
 
-A new Flutter project.
+Este proyecto demuestra la capacidad de Flutter para gestionar múltiples hilos y tareas asíncronas.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Arquitectura de Procesos
+1. **Event Loop (Future)**: Se implementó un escáner de galaxias que utiliza async/await para no bloquear el hilo principal durante la latencia de red simulada.
+2. **Intervalos (Timer)**: Una cuenta regresiva para misiones espaciales que gestiona de forma estricta el ciclo de vida del objeto Timer para evitar fugas de memoria.
+3. **Concurrencia Real (Isolate)**: Un motor de cálculo físico que delega operaciones matemáticas intensivas a un Isolate de Dart
