@@ -18,10 +18,10 @@ class AccidenteIsolate {
       dias[acc.dia] = (dias[acc.dia] ?? 0) + 1;
     }
 
-    var topBarrios = (barrios.entries.toList()
-          ..sort((a, b) => b.value.compareTo(a.value)))
-        .take(5)
-        .toList();
+    var topBarrios =
+        (barrios.entries.toList()..sort((a, b) => b.value.compareTo(a.value)))
+            .take(5)
+            .toList();
 
     stopwatch.stop();
     print("[Isolate] Completado en ${stopwatch.elapsedMilliseconds} ms");

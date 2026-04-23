@@ -3,13 +3,16 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/establecimiento_model.dart';
 
 class ApiService {
- final Dio _dio = Dio(BaseOptions(
-  headers: {
-    // Esto le dice al servidor que eres un navegador real y no un bot
-    'User-Agent': 'Mozilla/5.0 (Android 13; Mobile; rv:110.0) Gecko/110.0 Firefox/110.0',
-    'Accept': 'application/json',
-  },
-));
+  final Dio _dio = Dio(
+    BaseOptions(
+      headers: {
+        // Esto le dice al servidor que eres un navegador real y no un bot
+        'User-Agent':
+            'Mozilla/5.0 (Android 13; Mobile; rv:110.0) Gecko/110.0 Firefox/110.0',
+        'Accept': 'application/json',
+      },
+    ),
+  );
 
   final String _urlAccidentes = dotenv.env['API_ACCIDENTES'] ?? '';
   final String _urlParqueadero = dotenv.env['API_PARQUEADERO'] ?? '';
@@ -23,7 +26,6 @@ class ApiService {
     }
   }
 
-  
   Future<List<Establecimiento>> fetchEstablecimientos() async {
     try {
       final response = await _dio.get('$_urlParqueadero/establecimientos');
@@ -45,7 +47,10 @@ class ApiService {
   Future<void> updateEstablecimiento(int id, FormData data) async {
     try {
       data.fields.add(MapEntry('_method', 'PUT'));
-      await _dio.post('$_urlParqueadero/establecimiento-update/$id', data: data);
+      await _dio.post(
+        '$_urlParqueadero/establecimiento-update/$id',
+        data: data,
+      );
     } catch (e) {
       throw Exception('Error al actualizar establecimiento: $e');
     }

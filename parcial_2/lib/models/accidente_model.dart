@@ -4,7 +4,12 @@ class Accidente {
   final String barrio;
   final String dia;
 
-  Accidente({required this.clase, required this.gravedad, required this.barrio, required this.dia});
+  Accidente({
+    required this.clase,
+    required this.gravedad,
+    required this.barrio,
+    required this.dia,
+  });
 
   factory Accidente.fromJson(Map<String, dynamic> json) {
     return Accidente(

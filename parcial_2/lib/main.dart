@@ -5,7 +5,7 @@ import 'themes/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Parcial 2',
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
-      theme: AppTheme.lightTheme, 
+      theme: AppTheme.lightTheme,
     );
   }
 }

@@ -47,22 +47,36 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildStatCard("Total Accidentes", "$_totalAccidentes", Icons.car_crash, Colors.orange),
+              _buildStatCard(
+                "Total Accidentes",
+                "$_totalAccidentes",
+                Icons.car_crash,
+                Colors.orange,
+              ),
               const SizedBox(height: 16),
-              _buildStatCard("Establecimientos", "$_totalEstablecimientos", Icons.store, Colors.blue),
+              _buildStatCard(
+                "Establecimientos",
+                "$_totalEstablecimientos",
+                Icons.store,
+                Colors.blue,
+              ),
               const Spacer(),
               ElevatedButton.icon(
                 onPressed: () => context.push('/accidentes'),
                 icon: const Icon(Icons.analytics),
                 label: const Text("VER ESTADÍSTICAS"),
-                style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 15)),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                ),
               ),
               const SizedBox(height: 12),
               ElevatedButton.icon(
                 onPressed: () => context.push('/establecimientos'),
                 icon: const Icon(Icons.edit_note),
                 label: const Text("GESTIÓN DE ESTABLECIMIENTOS"),
-                style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 15)),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                ),
               ),
             ],
           ),
@@ -71,14 +85,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
+  Widget _buildStatCard(
+    String title,
+    String value,
+    IconData icon,
+    Color color,
+  ) {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: Icon(icon, color: color, size: 40),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        trailing: Text(value, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: color)),
+        trailing: Text(
+          value,
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
       ),
     );
   }

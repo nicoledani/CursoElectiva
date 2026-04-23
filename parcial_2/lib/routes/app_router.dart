@@ -8,10 +8,7 @@ import '../models/establecimiento_model.dart';
 final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const HomeScreen(),
-    ),
+    GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(
       path: '/accidentes',
       builder: (context, state) => const AccidentesView(),

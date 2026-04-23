@@ -6,7 +6,14 @@ class Establecimiento {
   final String telefono;
   final String? logo;
 
-  Establecimiento({this.id, required this.nombre, required this.nit, required this.direccion, required this.telefono, this.logo});
+  Establecimiento({
+    this.id,
+    required this.nombre,
+    required this.nit,
+    required this.direccion,
+    required this.telefono,
+    this.logo,
+  });
 
   factory Establecimiento.fromJson(Map<String, dynamic> json) {
     return Establecimiento(

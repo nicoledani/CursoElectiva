@@ -11,13 +11,14 @@ class EstablecimientoFormView extends StatefulWidget {
   const EstablecimientoFormView({super.key, this.establecimiento});
 
   @override
-  State<EstablecimientoFormView> createState() => _EstablecimientoFormViewState();
+  State<EstablecimientoFormView> createState() =>
+      _EstablecimientoFormViewState();
 }
 
 class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
   final _formKey = GlobalKey<FormState>();
   final _apiService = ApiService();
-  
+
   late TextEditingController _nameCtrl, _nitCtrl, _dirCtrl, _telCtrl;
   File? _selectedImage;
 
@@ -31,8 +32,12 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
   }
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) setState(() => _selectedImage = File(pickedFile.path));
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      setState(() => _selectedImage = File(pickedFile.path));
+    }
   }
 
   Future<void> _save() async {
@@ -51,7 +56,10 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
       if (widget.establecimiento == null) {
         await _apiService.createEstablecimiento(formData);
       } else {
-        await _apiService.updateEstablecimiento(widget.establecimiento!.id!, formData);
+        await _apiService.updateEstablecimiento(
+          widget.establecimiento!.id!,
+          formData,
+        );
       }
       if (mounted) context.pop(true);
     } catch (e) {
@@ -62,25 +70,48 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.establecimiento == null ? "Nuevo" : "Editar")),
+      appBar: AppBar(
+        title: Text(widget.establecimiento == null ? "Nuevo" : "Editar"),
+      ),
       body: Form(
         key: _formKey,
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            TextFormField(controller: _nameCtrl, decoration: const InputDecoration(labelText: "Nombre")),
-            TextFormField(controller: _nitCtrl, decoration: const InputDecoration(labelText: "NIT")),
-            TextFormField(controller: _dirCtrl, decoration: const InputDecoration(labelText: "Dirección")),
-            TextFormField(controller: _telCtrl, decoration: const InputDecoration(labelText: "Teléfono")),
+            TextFormField(
+              controller: _nameCtrl,
+              decoration: const InputDecoration(labelText: "Nombre"),
+            ),
+            TextFormField(
+              controller: _nitCtrl,
+              decoration: const InputDecoration(labelText: "NIT"),
+            ),
+            TextFormField(
+              controller: _dirCtrl,
+              decoration: const InputDecoration(labelText: "Dirección"),
+            ),
+            TextFormField(
+              controller: _telCtrl,
+              decoration: const InputDecoration(labelText: "Teléfono"),
+            ),
             const SizedBox(height: 20),
-            _selectedImage != null 
-              ? Image.file(_selectedImage!, height: 100)
-              : (widget.establecimiento?.logo != null 
-                  ? Image.network(widget.establecimiento!.logo!, height: 100)
-                  : const Icon(Icons.image, size: 100)),
-            ElevatedButton(onPressed: _pickImage, child: const Text("Seleccionar Logo")),
+            _selectedImage != null
+                ? Image.file(_selectedImage!, height: 100)
+                : (widget.establecimiento?.logo != null
+                      ? Image.network(
+                          widget.establecimiento!.logo!,
+                          height: 100,
+                        )
+                      : const Icon(Icons.image, size: 100)),
+            ElevatedButton(
+              onPressed: _pickImage,
+              child: const Text("Seleccionar Logo"),
+            ),
             const SizedBox(height: 40),
-            ElevatedButton(onPressed: _save, child: const Text("Guardar Establecimiento")),
+            ElevatedButton(
+              onPressed: _save,
+              child: const Text("Guardar Establecimiento"),
+            ),
           ],
         ),
       ),

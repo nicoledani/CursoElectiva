@@ -8,7 +8,8 @@ class EstablecimientosListView extends StatefulWidget {
   const EstablecimientosListView({super.key});
 
   @override
-  State<EstablecimientosListView> createState() => _EstablecimientosListViewState();
+  State<EstablecimientosListView> createState() =>
+      _EstablecimientosListViewState();
 }
 
 class _EstablecimientosListViewState extends State<EstablecimientosListView> {
@@ -37,8 +38,14 @@ class _EstablecimientosListViewState extends State<EstablecimientosListView> {
       builder: (c) => AlertDialog(
         title: const Text("¿Eliminar?"),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(c, false), child: const Text("NO")),
-          TextButton(onPressed: () => Navigator.pop(c, true), child: const Text("SÍ")),
+          TextButton(
+            onPressed: () => Navigator.pop(c, false),
+            child: const Text("NO"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(c, true),
+            child: const Text("SÍ"),
+          ),
         ],
       ),
     );
@@ -62,7 +69,9 @@ class _EstablecimientosListViewState extends State<EstablecimientosListView> {
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: e.logo != null ? NetworkImage(e.logo!) : null,
+                  backgroundImage: e.logo != null
+                      ? NetworkImage(e.logo!)
+                      : null,
                   child: e.logo == null ? const Icon(Icons.business) : null,
                 ),
                 title: Text(e.nombre),

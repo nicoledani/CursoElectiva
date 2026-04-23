@@ -27,8 +27,10 @@ class _AccidentesViewState extends State<AccidentesView> {
     try {
       final rawData = await _apiService.fetchAccidentes();
       // EJECUCIÓN DEL ISOLATE (Requisito obligatorio)
-      final results = await Isolate.run(() => AccidenteIsolate.procesarDatos(rawData));
-      
+      final results = await Isolate.run(
+        () => AccidenteIsolate.procesarDatos(rawData),
+      );
+
       setState(() {
         _stats = results;
         _loading = false;
@@ -48,10 +50,19 @@ class _AccidentesViewState extends State<AccidentesView> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              _buildChartCard("Clase de Accidente", _buildPieChart(_stats['clases'])),
+              _buildChartCard(
+                "Clase de Accidente",
+                _buildPieChart(_stats['clases']),
+              ),
               _buildChartCard("Gravedad", _buildBarChart(_stats['gravedad'])),
-              _buildChartCard("Top 5 Barrios", _buildBarChart(_stats['barrios'])),
-              _buildChartCard("Día de la Semana", _buildPieChart(_stats['dias'])),
+              _buildChartCard(
+                "Top 5 Barrios",
+                _buildBarChart(_stats['barrios']),
+              ),
+              _buildChartCard(
+                "Día de la Semana",
+                _buildPieChart(_stats['dias']),
+              ),
             ],
           ),
         ),
@@ -67,7 +78,10 @@ class _AccidentesViewState extends State<AccidentesView> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(
+              title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 20),
             SizedBox(height: 200, child: chart),
           ],
@@ -78,23 +92,40 @@ class _AccidentesViewState extends State<AccidentesView> {
 
   Widget _buildPieChart(Map<String, dynamic>? data) {
     if (data == null) return const SizedBox();
-    return PieChart(PieChartData(
-      sections: data.entries.map((e) => PieChartSectionData(
-        value: e.value.toDouble(),
-        title: e.key,
-        radius: 50,
-        titleStyle: const TextStyle(fontSize: 10, color: Colors.white),
-      )).toList(),
-    ));
+    return PieChart(
+      PieChartData(
+        sections: data.entries
+            .map(
+              (e) => PieChartSectionData(
+                value: e.value.toDouble(),
+                title: e.key,
+                radius: 50,
+                titleStyle: const TextStyle(fontSize: 10, color: Colors.white),
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 
   Widget _buildBarChart(Map<String, dynamic>? data) {
     if (data == null) return const SizedBox();
-    return BarChart(BarChartData(
-      barGroups: data.entries.indexed.map((e) => BarChartGroupData(
-        x: e.$1,
-        barRods: [BarChartRodData(toY: e.$2.value.toDouble(), color: Colors.blue)],
-      )).toList(),
-    ));
+    return BarChart(
+      BarChartData(
+        barGroups: data.entries.indexed
+            .map(
+              (e) => BarChartGroupData(
+                x: e.$1,
+                barRods: [
+                  BarChartRodData(
+                    toY: e.$2.value.toDouble(),
+                    color: Colors.blue,
+                  ),
+                ],
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 }
