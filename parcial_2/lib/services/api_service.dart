@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/establecimiento_model.dart';
+import 'package:flutter/foundation.dart'; // Asegúrate de tener este import
 
 class ApiService {
   final Dio _dio = Dio(
     BaseOptions(
       headers: {
-        // Esto le dice al servidor que eres un navegador real y no un bot
-        'User-Agent':
-            'Mozilla/5.0 (Android 13; Mobile; rv:110.0) Gecko/110.0 Firefox/110.0',
+        if (!kIsWeb)
+          'User-Agent':
+              'Mozilla/5.0 (Android 13; Mobile; rv:110.0) Gecko/110.0 Firefox/110.0',
         'Accept': 'application/json',
       },
     ),
@@ -28,9 +29,12 @@ class ApiService {
 
   Future<List<Establecimiento>> fetchEstablecimientos() async {
     try {
-      final response = await _dio.get('$_urlParqueadero/establecimientos');
-      final List<dynamic> data = response.data;
-      return data.map((e) => Establecimiento.fromJson(e)).toList();
+      final response = await _dio.get(
+        'https://parking.visiontic.com.co/api/establecimientos',
+      );
+      final List<dynamic> listaJson = response.data['data'];
+
+      return listaJson.map((json) => Establecimiento.fromJson(json)).toList();
     } catch (e) {
       throw Exception('Error al obtener establecimientos: $e');
     }

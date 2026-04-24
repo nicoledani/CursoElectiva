@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +21,7 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
   final _apiService = ApiService();
 
   late TextEditingController _nameCtrl, _nitCtrl, _dirCtrl, _telCtrl;
-  File? _selectedImage;
+  XFile? _pickedFile;
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
       source: ImageSource.gallery,
     );
     if (pickedFile != null) {
-      setState(() => _selectedImage = File(pickedFile.path));
+      setState(() => _pickedFile = pickedFile);
     }
   }
 
@@ -48,8 +49,13 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
       'nit': _nitCtrl.text,
       'direccion': _dirCtrl.text,
       'telefono': _telCtrl.text,
-      if (_selectedImage != null)
-        'logo': await MultipartFile.fromFile(_selectedImage!.path),
+      if (_pickedFile != null)
+        'logo': kIsWeb
+            ? MultipartFile.fromBytes(
+                await _pickedFile!.readAsBytes(),
+                filename: "logo.jpg",
+              )
+            : await MultipartFile.fromFile(_pickedFile!.path),
     });
 
     try {
@@ -95,8 +101,10 @@ class _EstablecimientoFormViewState extends State<EstablecimientoFormView> {
               decoration: const InputDecoration(labelText: "Teléfono"),
             ),
             const SizedBox(height: 20),
-            _selectedImage != null
-                ? Image.file(_selectedImage!, height: 100)
+            _pickedFile != null
+                ? (kIsWeb
+                      ? Image.network(_pickedFile!.path, height: 100)
+                      : Image.file(File(_pickedFile!.path), height: 100))
                 : (widget.establecimiento?.logo != null
                       ? Image.network(
                           widget.establecimiento!.logo!,

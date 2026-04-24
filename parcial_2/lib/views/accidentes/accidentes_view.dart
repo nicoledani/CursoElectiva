@@ -1,9 +1,9 @@
-import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../services/api_service.dart';
 import '../../isolates/accidente_isolate.dart';
+import 'package:flutter/foundation.dart'; // <--- AGREGAR ESTO
 
 class AccidentesView extends StatefulWidget {
   const AccidentesView({super.key});
@@ -26,17 +26,31 @@ class _AccidentesViewState extends State<AccidentesView> {
   Future<void> _loadData() async {
     try {
       final rawData = await _apiService.fetchAccidentes();
-      // EJECUCIÓN DEL ISOLATE (Requisito obligatorio)
-      final results = await Isolate.run(
-        () => AccidenteIsolate.procesarDatos(rawData),
-      );
 
-      setState(() {
-        _stats = results;
-        _loading = false;
-      });
+      Map<String, dynamic> results;
+
+      if (kIsWeb) {
+        // EN WEB: Ejecutamos el procesamiento de forma asíncrona normal
+        // Usamos Future.value o simplemente llamamos a la función
+        // ya que dart:isolate no está disponible.
+        results = await Future(() => AccidenteIsolate.procesarDatos(rawData));
+      } else {
+        // EN MÓVIL/DESKTOP: Usamos compute (que usa Isolates internamente)
+        // Es más seguro y limpio para compatibilidad.
+        results = await compute(AccidenteIsolate.procesarDatos, rawData);
+      }
+
+      if (mounted) {
+        setState(() {
+          _stats = results;
+          _loading = false;
+        });
+      }
     } catch (e) {
       debugPrint("Error cargando accidentes: $e");
+      if (mounted) {
+        setState(() => _loading = false);
+      }
     }
   }
 
