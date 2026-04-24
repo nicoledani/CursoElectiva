@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/establecimiento_model.dart';
-import 'package:flutter/foundation.dart'; // Asegúrate de tener este import
+import 'package:flutter/foundation.dart'; 
 
 class ApiService {
   final Dio _dio = Dio(

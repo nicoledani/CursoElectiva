@@ -3,7 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../services/api_service.dart';
 import '../../isolates/accidente_isolate.dart';
-import 'package:flutter/foundation.dart'; // <--- AGREGAR ESTO
+import 'package:flutter/foundation.dart'; 
 
 class AccidentesView extends StatefulWidget {
   const AccidentesView({super.key});
@@ -30,9 +30,7 @@ class _AccidentesViewState extends State<AccidentesView> {
       Map<String, dynamic> results;
 
       if (kIsWeb) {
-        // EN WEB: Ejecutamos el procesamiento de forma asíncrona normal
-        // Usamos Future.value o simplemente llamamos a la función
-        // ya que dart:isolate no está disponible.
+        // EN WEB: No podemos usar Isolates, así que procesamos directamente.
         results = await Future(() => AccidenteIsolate.procesarDatos(rawData));
       } else {
         // EN MÓVIL/DESKTOP: Usamos compute (que usa Isolates internamente)
