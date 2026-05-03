@@ -28,7 +28,7 @@ Este proyecto demuestra la capacidad de Flutter para gestionar múltiples hilos 
   - Se descarga e instala la app en su dispositivo Android.
 
 - **Actualización a una nueva versión**
-  - Se modifica el código.Up
+  - Se modifica el código
   - Se genera un nuevo APK con `flutter build apk`.
   - Se sube a Firebase App Distribution como una nueva versión.
   - El grupo `QA_Clase` recibe una nueva notificación para actualizar.
