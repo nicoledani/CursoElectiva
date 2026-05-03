@@ -88,7 +88,7 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.memory),
             title: const Text('Isolate'),
-            onTap: () {              
+            onTap: () {
               context.go('/isolate');
             },
           ),
@@ -107,7 +107,7 @@ class CustomDrawer extends StatelessWidget {
               context.go('/pokemons');
               Navigator.pop(context);
             },
-          )
+          ),
         ],
       ),
     );
