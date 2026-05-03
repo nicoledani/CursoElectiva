@@ -16,8 +16,8 @@ Este proyecto demuestra la capacidad de Flutter para gestionar múltiples hilos 
 - **Subir a Firebase App Distribution**
   - Acceder a Firebase Console → App Distribution → **Releases**.
   - Arrastrar el APK generado.
-  - Seleccionar el grupo de testers `QA_Clase` (previamente creado).
-  - Rellenar las **Release Notes** (siguiendo el formato indicado más abajo).
+  - Seleccionar el grupo de testers `QA_Clase`
+  - Subir las **Release Notes**.
   - Publicar la versión.
 
 - **Notificar a los testers**
@@ -30,14 +30,14 @@ Este proyecto demuestra la capacidad de Flutter para gestionar múltiples hilos 
 - **Actualización a una nueva versión**
   - Se modifica el código (por ejemplo, se cambia la versión en `pubspec.yaml` y en `android/app/build.gradle`).
   - Se genera un nuevo APK con `flutter build apk`.
-  - Se sube a Firebase App Distribution como una nueva versión (Firebase detecta el versionCode mayor).
+  - Se sube a Firebase App Distribution como una nueva versión.
   - El grupo `QA_Clase` recibe una nueva notificación para actualizar.
 
 ## Publicación
 
 1. **Pre-requisitos locales**
    - Tener Flutter instalado y configurado.
-   - Tener acceso al proyecto Firebase (con los permisos de editor).
+   - Tener acceso al proyecto Firebase.
    - Tener copia local del archivo `google-services.json` en `android/app/`
 
 2. **Actualizar versión**
