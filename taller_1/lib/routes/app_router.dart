@@ -4,10 +4,11 @@ import 'package:taller_1/views/paso_parametros/detalle_screen.dart';
 import 'package:taller_1/views/paso_parametros/paso_parametros_screen.dart';
 import 'package:taller_1/views/pokemons/pokemon_detail_view.dart';
 import 'package:taller_1/views/pokemons/pokemon_list_view.dart';
-import 'package:go_router/go_router.dart';
+import 'package:taller_1/views/ciclo_vida/ciclo_vida_screen.dart';
+import 'package:taller_1/views/future/future_view.dart';
+import 'package:taller_1/views/time/time_view.dart';
 
-import '../views/ciclo_vida/ciclo_vida_screen.dart';
-import '../views/future/future_view.dart';
+import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
   routes: [
@@ -51,6 +52,11 @@ final GoRouter appRouter = GoRouter(
       path: '/future',
       name: 'future',
       builder: (context, state) => const FutureView(),
+    ),
+    GoRoute(
+      path: '/time',
+      name: 'time',
+      builder: (context, state) => const TimeView(),
     ),
     //!Ruta para http
     GoRoute(
