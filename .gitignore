@@ -8,6 +8,13 @@
 **/doc/api/
 **/pub/
 **/coverage/
+**/.pub/
+**/.atom/
+**/.build/
+**/.buildlog/
+**/.history
+**/.svn/
+**/.swiftpm/
 
 # --- Android ---
 **/android/local.properties
